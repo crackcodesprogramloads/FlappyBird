@@ -1,0 +1,28 @@
+body {
+  margin: 0px;
+}
+
+.bird {
+  position: absolute;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.Div {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.Gamebox {
+  height: 500px;
+  width: 500px;
+  background-color: blue;
+  overflow: hidden;
+}
+
+.obstacle {
+  position: relative;
+  background-color: green;
+}
