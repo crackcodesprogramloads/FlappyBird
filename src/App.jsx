@@ -7,7 +7,7 @@ const BIRD_SIZE = 30;
 const GAME_WIDTH = 500;
 const GAME_HEIGHT = 500;
 const GRAVITY = 4;
-const JUMP_HEIGHT = 80;
+const JUMP_HEIGHT = 60;
 const OBSTACLE_WIDTH = 40;
 const OBSTACLE_GAP = 150;
 
