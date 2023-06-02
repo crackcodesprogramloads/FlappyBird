@@ -6,6 +6,7 @@ export default function Bird(props) {
         width: `${props.size}px`,
         height: `${props.size}px`,
         top: `${props.top}px`,
+        left: `${props.left}px`,
       }}
     ></div>
   );

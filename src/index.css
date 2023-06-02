@@ -1,27 +1,38 @@
 body {
   margin: 0px;
   background: black;
+}
+
+.Container1 {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-}
-
-.bird {
-  position: absolute;
-  background-color: red;
-  border-radius: 50%;
-}
-
-.Div {
-  display: flex;
-  width: 100%;
-  height: 100%;
   justify-content: center;
+}
+
+.Container2 {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+h1 {
+  color: green;
+}
+
+h2 {
+  position: absolute;
+  color: white;
+  font-weight: 100;
 }
 
 .Gamebox {
+  padding-left: 20px;
   height: 500px;
   width: 500px;
+  border: solid 1px red;
   background-color: blue;
   overflow: hidden;
 }
@@ -29,4 +40,19 @@ body {
 .obstacle {
   position: relative;
   background-color: green;
+  border: solid 1px orange;
+}
+
+.bird {
+  position: absolute;
+  background-color: red;
+  border-top-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.scoreboard {
+  margin-top: 20px;
+  width: 40vw;
+  display: flex;
+  justify-content: space-between;
 }

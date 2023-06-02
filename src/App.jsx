@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Bird from "./Bird";
 import Obstacle from "./Obstacle";
 
@@ -7,7 +6,7 @@ const BIRD_SIZE = 30;
 const GAME_WIDTH = 500;
 const GAME_HEIGHT = 500;
 const GRAVITY = 4;
-const JUMP_HEIGHT = 60;
+const JUMP_HEIGHT = 40;
 const OBSTACLE_WIDTH = 40;
 const OBSTACLE_GAP = 150;
 
@@ -23,6 +22,7 @@ function App() {
   );
   const [obstacleLeft, setObstacleLeft] = React.useState(OBSTACLE_START_LEFT);
   const [score, setScore] = React.useState(0);
+  const [highScore, setHighScore] = React.useState(0);
 
   const bottomObstacleHeight = GAME_HEIGHT - obstacleHeight - OBSTACLE_GAP;
 
@@ -65,7 +65,6 @@ function App() {
   }, [gameStarted, obstacleLeft]);
 
   React.useEffect(() => {
-    console.log("Line 62-", score);
     const collidedTop = birdPosition >= 0 && birdPosition < obstacleHeight;
     const collidedBottom =
       birdPosition <= 500 && birdPosition >= 500 - bottomObstacleHeight;
@@ -83,6 +82,10 @@ function App() {
     }
   }, [birdPosition, obstacleHeight, bottomObstacleHeight, obstacleLeft]);
 
+  React.useEffect(() => {
+    score > highScore ? setHighScore(score) : null;
+  }, [score]);
+
   const handleClick = () => {
     let newBirdPosition = birdPosition - JUMP_HEIGHT;
     if (!gameStarted) {
@@ -95,25 +98,32 @@ function App() {
   };
 
   return (
-    <div onClick={handleClick} className="Div">
-      <div className="Gamebox">
-        <Obstacle
-          top={0}
-          width={OBSTACLE_WIDTH}
-          height={obstacleHeight}
-          left={obstacleLeft}
-        />
-        <Obstacle
-          top={GAME_HEIGHT - (obstacleHeight + bottomObstacleHeight)}
-          width={OBSTACLE_WIDTH}
-          height={bottomObstacleHeight}
-          left={obstacleLeft}
-        />
-        <Bird size={BIRD_SIZE} top={birdPosition} />
+    <div className="Container1">
+      <h1>FLURPY BIRD</h1>
+      <div className="Container2" onClick={handleClick}>
+        <div className="Gamebox">
+          {!gameStarted ? <h2>CLICK TO JUMP!</h2> : null}
+          <Obstacle
+            top={0}
+            width={OBSTACLE_WIDTH}
+            height={obstacleHeight}
+            left={obstacleLeft}
+          />
+          <Obstacle
+            top={GAME_HEIGHT - (obstacleHeight + bottomObstacleHeight)}
+            width={OBSTACLE_WIDTH}
+            height={bottomObstacleHeight}
+            left={obstacleLeft}
+          />
+          <Bird size={BIRD_SIZE} top={birdPosition} />
+        </div>
       </div>
-      <span style={{ color: "white", fontSize: "24px", position: "absolute" }}>
-        {score}
-      </span>
+      <div className="scoreboard">
+        <span style={{ color: "white", fontSize: "24px" }}>SCORE: {score}</span>
+        <span style={{ color: "white", fontSize: "24px" }}>
+          HIGH SCORE: {highScore}
+        </span>
+      </div>
     </div>
   );
 }
